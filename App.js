@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+import Home from './screens/home';
+import Detalies from './screens/detalies';
+import ProfileScreen from './screens/Profile';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: 'Tela Principal',
+            headerStyle: { backgroundColor: '#007bff' },
+            headerTintColor: '#fff',
+          }}
+        />
+
+        <Stack.Screen
+          name="Details"
+          component={Detalies}
+          options={{
+            title: 'Detalhes',
+            headerStyle: { backgroundColor: '#dc3545' },
+            headerTintColor: '#fff',
+          }}
+        />
+
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
